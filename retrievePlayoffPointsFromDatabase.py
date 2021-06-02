@@ -19,3 +19,8 @@ sums = cursor.fetchall()
 teamSums = [(teams[i], sums[0][i]) for i in range(32)]
 sortedSums = sorted(teamSums, key = lambda x: x[1])
 [print(sortedSum[0], sortedSum[1]) for sortedSum in sortedSums]
+
+with open ('nflPlayoffStat.csv','w',newline = '') as csvfile:
+    my_writer = csv.writer(csvfile, delimiter = ',')
+    my_writer.writerow(["Team", "Playoff Points Since 1995"])
+    my_writer.writerows(sortedSums)
